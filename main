@@ -3,10 +3,8 @@ Um script que varre uma pasta (como a de "Downloads") e move arquivos para pasta
 '''
 
 '''
-importar os e pathlib
-Usuario cria uma pasta (input, escolhe o nome)
-Automaticamente são criadas pastas de acordo com cada extensão
-(Input) dentro de um loop: usuario cria arquivo escolhendo a extensão
+Renomear o arquivo no github para main.py
+
 analisa a extensão do arquivo criado, identifica o padrão
 envia ele para a pasta de acordo com a extensão
 '''
@@ -15,8 +13,8 @@ envia ele para a pasta de acordo com a extensão
 from pathlib import Path
 
 #Create a folder with name choose for user
-folder_user = input("What name of your folder?: ")
-folder_main = Path.home() / "Downloads" / folder_user
+folder_user = input("\nWhat name of your folder?: ")
+folder_main = Path() / "Downloads" / folder_user
 folder_main.mkdir(parents=True, exist_ok=True)
 
 #Folders of each extension
@@ -24,7 +22,20 @@ def create_folders(type_folder,main_path):
     sub_folder = Path.home() / main_path / type_folder
     sub_folder.mkdir(parents=True, exist_ok=True)
 
-subfolders_main = ["Documents","Compressed","Spreadsheets","Images","Executables","Audios","Videos","Presentations"]
+subfolders_main = ["Documents","Compressed","Spreadsheets","Images",
+                   "Executables","Audios","Videos","Presentations"]
 
-for namefold in subfolders_main:
-    create_folders(namefold,folder_main)
+for name in subfolders_main:
+    create_folders(name,folder_main)
+
+print("\nFolder created.\n")
+
+#Create files
+def create_files(file_user = input("What is your file name and extension? ")):
+    file_user = Path.home() / folder_main / file_user
+    file_user.touch()
+
+create_files()
+print("\nFile created")
+
+#Analyze the created file.
