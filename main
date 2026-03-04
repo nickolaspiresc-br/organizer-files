@@ -1,1 +1,20 @@
+'''
+Um script que varre uma pasta (como a de "Downloads") e move arquivos para pastas específicas baseadas na extensão (.pdf, .jpg, .zip).
+'''
 
+'''
+importar os e pathlib
+Usuario cria uma pasta (input, escolhe o nome)
+Automaticamente são criadas pastas de acordo com cada extensão
+(Input) dentro de um loop: usuario cria arquivo escolhendo a extensão
+analisa a extensão do arquivo criado, identifica o padrão
+envia ele para a pasta de acordo com a extensão
+'''
+
+#Import module
+from pathlib import Path
+
+#Create a folder with name choose for user
+folder_user = input("What name of your folder?: ")
+folder_main = Path.home() / "Downloads" / folder_user
+folder_main.mkdir(parents=True, exist_ok=True)
